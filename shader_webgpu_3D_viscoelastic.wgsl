@@ -10,6 +10,15 @@ const wsy : u32 = _WSY_;
 // Workgroup size for z dimension
 const wsz : u32 = _WSZ_;
 
+// Habilita vista do bscan xy
+const bscan_xy : u32 = _BSCAN_XY_;
+
+// Habilita vista do bscan xz
+const bscan_xz : u32 = _BSCAN_XZ_;
+
+// Habilita vista do bscan yz
+const bscan_yz : u32 = _BSCAN_YZ_;
+
 // Workgroup size for sensors store kernel
 const idx_rec_offset: u32 = _IDX_REC_OFFSET_;
 
@@ -1441,7 +1450,7 @@ fn sigma_kernel(@builtin(global_invocation_id) index: vec3<u32>) {
 
             sigmaxx = get_sigmaxx(x, y, z) + (lambdaplus2mu * vdvx_dx + lambda * (vdvy_dy + vdvz_dz) + lambda_23mu * 0.5 * sum_r_xx + mu * sum_r_yy) * dt;
             sigmayy = get_sigmayy(x, y, z) + (lambda * (vdvx_dx + vdvz_dz) + lambdaplus2mu * vdvy_dy + lambda_23mu * 0.5 * sum_r_xx + mu * sum_r_zz) * dt;
-            sigmazz = get_sigmazz(x, y, z) + (lambda * (vdvx_dx + vdvy_dy) + lambdaplus2mu * vdvz_dz + lambdaplus2mu * 0.5 * sum_r_xx - (mu / 3.0)    * (sum_r_yy + sum_r_zz)) * dt;
+            sigmazz = get_sigmazz(x, y, z) + (lambda * (vdvx_dx + vdvy_dy) + lambdaplus2mu * vdvz_dz + lambda_23mu * 0.5 * sum_r_xx - mu * (sum_r_yy + sum_r_zz)) * dt;
         }
         else {
             sigmaxx = get_sigmaxx(x, y, z) + (lambdaplus2mu * vdvx_dx + lambda * (vdvy_dy + vdvz_dz))*dt;

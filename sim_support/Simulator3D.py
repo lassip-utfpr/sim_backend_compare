@@ -237,6 +237,9 @@ class Simulator3D:
         self._save_bscan = bool(self._configs.get("simul_configs", False).get("save_bscan", False))
         self._save_sources = bool(self._configs.get("simul_configs", False).get("save_sources", False))
         self._source_env = bool(self._configs.get("simul_configs", False).get("source_env", False))
+        self._bscan_xy = self._configs.get("simul_configs", False).get("bscan_xy", False)
+        self._bscan_xz = self._configs.get("simul_configs", False).get("bscan_xz", False)
+        self._bscan_yz = self._configs.get("simul_configs", False).get("bscan_yz", False)
         
         if ("emission_laws" in self._configs["simul_configs"] and
             os.path.isfile(os.path.normpath(self._configs["simul_configs"]["emission_laws"]))):

@@ -10,6 +10,15 @@ const wsy : u32 = _WSY_;
 // Workgroup size for z dimension
 const wsz : u32 = _WSZ_;
 
+// Habilita vista do bscan xy
+const bscan_xy : u32 = _BSCAN_XY_;
+
+// Habilita vista do bscan xz
+const bscan_xz : u32 = _BSCAN_XZ_;
+
+// Habilita vista do bscan yz
+const bscan_yz : u32 = _BSCAN_YZ_;
+
 // Workgroup size for sensors store kernel
 const idx_rec_offset: u32 = _IDX_REC_OFFSET_;
 

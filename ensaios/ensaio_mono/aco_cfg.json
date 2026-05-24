@@ -41,7 +41,7 @@
   ],
   "simul_params":
   {
-    "time_steps": 13000,
+    "time_steps": 8000,
     "dt": 4e-3,
     "acc": 2,
     "it_display": 10
@@ -49,7 +49,7 @@
   "simul_configs":
   {
     "n_iter": 1,
-    "show_anim": 0,
+    "show_anim": 1,
     "max_val_fields": 100.0,
     "min_val_fields": -100.0,
     "show_xy": 0,

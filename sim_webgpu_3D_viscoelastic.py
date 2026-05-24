@@ -56,6 +56,9 @@ class SimulatorWebGPU(Simulator3D):
             cshader_string = cshader_string.replace('_WSX_', f'{self._wsx}')
             cshader_string = cshader_string.replace('_WSY_', f'{self._wsy}')
             cshader_string = cshader_string.replace('_WSZ_', f'{self._wsz}')
+            cshader_string = cshader_string.replace('_BSCAN_XY_', f'{self._bscan_xy}')
+            cshader_string = cshader_string.replace('_BSCAN_XZ_', f'{self._bscan_xz}')
+            cshader_string = cshader_string.replace('_BSCAN_YZ_', f'{self._bscan_yz}')
             cshader_string = cshader_string.replace('_IDX_REC_OFFSET_', f'{self._idx_rec_teste}')
             cshader = self._device.create_shader_module(code=cshader_string)
 
@@ -223,16 +226,8 @@ class SimulatorWebGPU(Simulator3D):
                                                                     usage=read_only_mask)
         b_memory_dsigmayz_dz = self._device.create_buffer_with_data(data=np.zeros((self._nx, self._ny, self._nz), dtype=flt32),
                                                                     usage=read_only_mask)
-        # Sinais dos sensores
-        b_sens_x = self._device.create_buffer_with_data(data=np.zeros((self._n_steps, self._n_rec), dtype=flt32),
-                                                               usage=read_write_mask)
-        b_sens_y = self._device.create_buffer_with_data(data=np.zeros((self._n_steps, self._n_rec), dtype=flt32),
-                                                        usage=read_write_mask)
-        b_sens_sigxx = self._device.create_buffer_with_data(data=np.zeros((self._n_steps, self._n_rec), dtype=flt32),
-                                                        usage=read_write_mask)
-        b_sens_sigzz = self._device.create_buffer_with_data(data=np.zeros((self._n_steps, self._n_rec), dtype=flt32),
-                                                        usage=read_write_mask)
-        b_sens_sigxy = self._device.create_buffer_with_data(data=np.zeros((self._n_steps, self._n_rec), dtype=flt32),
+        # Sinal do sensor
+        b_sens_sig = self._device.create_buffer_with_data(data=np.zeros((self._n_steps, self._n_rec), dtype=flt32),
                                                         usage=read_write_mask)
 
         # Tempo de espera para recepcao nos sensores
@@ -569,7 +564,7 @@ class SimulatorWebGPU(Simulator3D):
         b_sensors = [
             {
                 "binding": 0,
-                "resource": {"buffer": b_sens_sigzz, "offset": 0, "size": b_sens_sigzz.size},
+                "resource": {"buffer": b_sens_sig, "offset": 0, "size": b_sens_sig.size},
             },
             {
                 "binding": 1,
@@ -697,19 +692,19 @@ class SimulatorWebGPU(Simulator3D):
         # Pega os resultados da simulacao
         sigmazz = np.asarray(self._device.queue.read_buffer(b_sigmazz, buffer_offset=0).cast("f")).reshape(
             (self._nx, self._ny, self._nz))
-        sens_sigmazz = np.array(self._device.queue.read_buffer(b_sens_sigzz).cast("f")).reshape(
+        sens_sigma = np.array(self._device.queue.read_buffer(b_sens_sig).cast("f")).reshape(
             (self._n_steps, self._n_rec))
 
         # --------------------------------------------
         # A funcao de implementacao do simulador deve retornar
         # um dicionario com as seguintes chaves:
-        #   - "pressure": campo de pressao
-        #   - "sens_pressure": sinais da pressao nos sensores
+        #   - "stress": campo de tensao
+        #   - "sens_stress": sinais da tensao nos sensores
         #   - "gpu_str": string de identificacao da GPU utilizada na simulacao
         #   - "sim_time": tempo da simulacao, medido com a funcao time()
         #   - opcionalmente pode ter uma mensagem exclusiva da implementacao em "msg_impl"
         # --------------------------------------------
-        return {"stress": sigmazz, "sens_stress": sens_sigmazz,
+        return {"stress": sigmazz, "sens_stress": sens_sigma,
                 "gpu_str": self._device.adapter.info["device"], "sim_time": sim_time}
 
 

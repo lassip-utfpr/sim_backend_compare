@@ -12,6 +12,7 @@ from sim_support.simulator import Simulator
 # ======================
 import cupy
 import cupyx
+import cupyx.jit
 
 
 # -----------------------------------------------------------------------------

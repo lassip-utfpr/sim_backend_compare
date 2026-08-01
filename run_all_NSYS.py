@@ -21,14 +21,14 @@ for file in files:
     profile_cmd = [
         "nsys",
         "profile",
-        "--trace=cuda,vulkan",
-        "--gpu-metrics-device=all",
+        "--trace=cuda,vulkan,osrt",
+        "--gpu-metrics-devices=all",
         "--force-overwrite=true",
         f"--output={os.path.splitext(rep_file)[0]}",
         "python",
         file,
         "-c",
-        os.path.join(".", "ensaios", "ponto", "ponto_sem_plots.json")
+        os.path.join(".", "ensaios", "ponto", "ponto_sem_plots_1x.json")
     ]
 
     resultado = subprocess.run(profile_cmd, capture_output=True, text=True, env=env)

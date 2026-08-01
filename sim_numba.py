@@ -203,9 +203,9 @@ class SimulatorNumba(Simulator):
         # Define os tamanhos dos blocos e dos grids para os kernels
         self._block_size_x = np.gcd(self._nx, 16)
         self._block_size_y = np.gcd(self._ny, 16)
-        block_size = (self._block_size_x, self._block_size_y)
-        grid_fields = ((self._nx + block_size[0] - 1) // block_size[0],
-                       (self._ny + block_size[1] - 1) // block_size[1])
+        block_size = (int(self._block_size_x), int(self._block_size_y))
+        grid_fields = (int((self._nx + block_size[0] - 1) // block_size[0]),
+                       int((self._ny + block_size[1] - 1) // block_size[1]))
         
         # Laco de tempo para execucao da simulacao
         t_gpu = time()
@@ -259,7 +259,7 @@ class SimulatorNumba(Simulator):
         #   - opcionalmente pode ter uma mensagem exclusiva da implementacao em "msg_impl"
         # --------------------------------------------
         return {"pressure": pressure, "sens_pressure": sens_pressure,
-                "gpu_str": cuda.gpus.current.name.decode(), "sim_time": sim_time}
+                "gpu_str": cuda.get_current_device().name, "sim_time": sim_time}
 
 
 # ----------------------------------------------------------

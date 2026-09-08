@@ -22,7 +22,7 @@
     {
       "mono": {
         "id": "mono01",
-        "radius": 0.25,
+        "radius": 0.125,
         "freq": 5.0,
         "bw": 0.5,
         "gain": 1e2,
@@ -70,7 +70,10 @@
     "save_sources": 0,
     "source_env": 0,
     "results_dir": "./ensaios/ensaio_mono/results",
-    "viscoelastic_attn": 1
+    "viscoelastic_attn": 1,
+    "attn_freq_mhz": 5.0,
+    "alpha_file": "./ensaios/ensaio_mono/alpha_Np_mm.npy",
+    "freq_file": "./ensaios/ensaio_mono/freq_band_MHz.npy"
   },
   "specimen_params":
   {

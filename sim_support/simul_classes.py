@@ -539,7 +539,7 @@ class ElementCirc:
     Essa classe pode ser utilizada no transdutor "MonoCirc" até o momento.
     """
 
-    def __init__(self, radius=0.25, coord_center=np.zeros((3,)),
+    def __init__(self, radius=0.125, coord_center=np.zeros((3,)),
                  freq=5., bw=0.5, gain=1.0, t0=1.0,
                  tx_en=True, rx_en=True, pulse_type="gaussian"):
         

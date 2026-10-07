@@ -129,12 +129,27 @@
             "args": "--config=${workspaceFolder}/ensaios/ponto/ponto.json"
         },
         {
-            "name": "Ponto Taichi-split",
+            "name": "Ponto Taichi-split (NVIDIA)",
             "type": "debugpy",
             "request": "launch",
             "program": "${workspaceFolder}/sim_taichi.py",
             "console": "integratedTerminal",
-            "args": "--config=${workspaceFolder}/ensaios/ponto/ponto.json"
+            "args": "--config=${workspaceFolder}/ensaios/ponto/ponto.json",
+            "env": {
+                "TI_ENABLE_CUDA": "1"
+            }
+        },
+        {
+            "name": "Ponto Taichi-split (Intel)",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/sim_taichi.py",
+            "console": "integratedTerminal",
+            "args": "--config=${workspaceFolder}/ensaios/ponto/ponto.json",
+            "env": {
+                "TI_ENABLE_CUDA": "0",
+                "TI_VISIBLE_DEVICE": "0" 
+            }
         },
         {
             "name": "Ponto Taichi-unsplit",

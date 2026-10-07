@@ -23,6 +23,8 @@ for file in files:
         "profile",
         "--trace=cuda,vulkan,osrt",
         "--gpu-metrics-devices=all",
+        "--enable",
+        "nvml_metrics",
         "--force-overwrite=true",
         f"--output={os.path.splitext(rep_file)[0]}",
         "python",

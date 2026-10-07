@@ -1,0 +1,69 @@
+{
+  "roi": {
+    "coord_ref": [[0.0, 0.0, 0.0]],
+    "height": 8.0,
+    "h_len": 8,
+    "width": 8.0,
+    "w_len": 8,
+    "depth": 0.0,
+    "d_len": 1,
+    "len_pml_xmin": 2,
+    "len_pml_xmax": 2,
+    "len_pml_ymin": 0,
+    "len_pml_ymax": 0,
+    "len_pml_zmin": 2,
+    "len_pml_zmax": 2,
+    "rcoef_pml": 0.0001,
+    "npower_pml": 2.0,
+    "k_max_pml": 1.0
+  },
+  "probes": [
+    {
+      "point": {
+        "id": "source",
+        "emitter": "True",
+        "receiver": "False",
+        "freq": 1.0,
+        "bw": 0.9,
+        "gain": 1.0,
+        "coord_center": [3.0, 0.0, 3.0],
+        "t0_emission": 0.2
+      }
+    },
+    {
+      "point": {
+        "id": "receiver",
+        "emitter": "False",
+        "receiver": "True",
+        "coord_center": [5.0, 0.0, 5.0]
+      }
+    }
+  ],
+  "simul_params": {
+    "time_steps": 8,
+    "dt": 0.1,
+    "acc": 2,
+    "it_display": 4
+  },
+  "simul_configs": {
+    "n_iter": 1,
+    "show_anim": 0,
+    "show_debug": 0,
+    "show_figs": 0,
+    "plot_results": 0,
+    "plot_error": 0,
+    "plot_sensors": 0,
+    "plot_bscan": 0,
+    "save_results": 0,
+    "save_field": 0,
+    "save_sensors": 0,
+    "save_bscan": 0,
+    "save_sources": 0,
+    "source_env": 0,
+    "results_dir": "."
+  },
+  "specimen_params": {
+    "cp": 1.0,
+    "rho": 1.0
+  }
+}

@@ -67,6 +67,38 @@
             "args": "--config=${workspaceFolder}/ensaios/ponto/ponto.json"
         },
         {
+            "name": "Ponto C++ CUDA",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/simulator_cuda_cpp",
+            "args": [
+                "--config=${workspaceFolder}/ensaios/ponto/ponto.json"
+            ],
+            "cwd": "${workspaceFolder}",
+            "externalConsole": false,
+            "MIMode": "gdb"
+        },
+        {
+            "name": "Ponto sem plot CuPy-cuda",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/sim_cupy_cuda.py",
+            "console": "integratedTerminal",
+            "args": "--config=${workspaceFolder}/ensaios/ponto/ponto_sem_plots.json"
+        },
+        {
+            "name": "Ponto sem plot C++ CUDA",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/simulator_cuda_cpp",
+            "args": [
+                "--config=${workspaceFolder}/ensaios/ponto/ponto_sem_plots.json"
+            ],
+            "cwd": "${workspaceFolder}",
+            "externalConsole": false,
+            "MIMode": "gdb"
+        },
+        {
             "name": "Ponto CuPy-cuda-unsplit",
             "type": "debugpy",
             "request": "launch",
